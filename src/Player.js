@@ -1,45 +1,23 @@
 import PropTypes from 'prop-types'
-import Playerform from './PlayerForm'
 import './Player.css'
 import Button from './Button'
 
-Playerform.propTypes = {
-  onClick: PropTypes.number,
-  children: PropTypes.node,
+Player.propTypes = {
+  onMinus: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onPlus: PropTypes.func.isRequired,
+  score: PropTypes.number,
 }
 
-export default function Player({ onClick, children }) {
+export default function Player({ score, name, onMinus, onPlus }) {
   return (
     <>
-      <section className="OnePlayer">
-        <div className="PlayerName">John Doe</div>
-        <Button onClick={onPlus} ClassName="ButtonPlus">
-          +
-        </Button>
-        <div className="PlayerScore"> 20 </div>
-        <Button onClick={onMinus} ClassName="ButtonMinus">
-          -
-        </Button>
-      </section>
-
-      <section className="OnePlayer">
-        <div className="PlayerName">Jane Doe</div>
-        <Button onClick={onPlus} ClassName="ButtonPlus">
-          +
-        </Button>
-        <div className="PlayerScore"> 20 </div>
-        <Button onClick={onMinus} ClassName="ButtonMinus">
-          -
-        </Button>
+      <section className="Player">
+        <div className="PlayerName">{name}</div>
+        <Button onClick={onMinus}>-</Button>
+        <div className="PlayerScore">{score}</div>
+        <Button onClick={onPlus}>+</Button>
       </section>
     </>
   )
-
-  function onPlus(event) {
-    event.preventDefault()
-  }
-
-  function onMinus(event) {
-    event.preventDefault()
-  }
 }

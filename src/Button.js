@@ -9,7 +9,7 @@ Button.propTypes = {
 
 export default function Button({ children, isActive, onClick }) {
   return (
-    <button onClick={onclick} className={isActive ? 'ButtonActive' : 'Button'}>
+    <button onClick={onClick} className={isActive ? 'ButtonActive' : 'Button'}>
       {children}
     </button>
   )

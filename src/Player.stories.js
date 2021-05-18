@@ -7,5 +7,9 @@ export default {
 }
 
 const Template = args => <Player {...args} />
-export const DefaultPlayer = Template.bind({})
-DefaultPlayer.args = {}
+
+export const StartPlayer = Template.bind({})
+StartPlayer.args = { name: 'John Doe', score: 0 }
+
+export const PlayerWithScore = Template.bind({})
+PlayerWithScore.args = { name: 'Jane Doe', score: 40 }
