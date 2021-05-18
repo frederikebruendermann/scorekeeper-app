@@ -1,6 +1,7 @@
 import Player from './Player'
 import PlayerForm from './PlayerForm'
 import Button from './Button'
+import React, { useState } from 'react'
 
 function App() {
   const [players, setPlayers] = useState([
@@ -10,18 +11,50 @@ function App() {
 
   return (
     <div className="App">
-      {players.map(player => (
-        <Player key={player.name} name={player.name} score={player.score} />
+      {players.map((player, index) => (
+        <Player
+          onMinus={() => handleMinus(index)}
+          onPlus={() => handlePlus(index)}
+          key={player.name}
+          name={player.name}
+          score={player.score}
+        />
       ))}
 
-      <Button>Reset score</Button>
-      <Button>Reset all</Button>
+      <Button onClick={resetScores}>Reset scores</Button>
+      <Button onClick={resetAll}>Reset all</Button>
       <PlayerForm onSubmit={createPlayer} />
     </div>
   )
 
   function createPlayer(name) {
     setPlayers([...players, { name, score: 0 }])
+  }
+
+  function handleMinus(index) {
+    const playerToUpdate = players[index]
+    setPlayers([
+      ...players.slice(0, index),
+      { ...playerToUpdate, score: playerToUpdate.score - 1 },
+      ...players.slice(index + 1),
+    ])
+  }
+
+  function handlePlus(index) {
+    const playerToUpdate = players[index]
+    setPlayers([
+      ...players.slice(0, index),
+      { ...playerToUpdate, score: playerToUpdate.score + 1 },
+      ...players.slice(index + 1),
+    ])
+  }
+
+  function resetScores() {
+    setPlayers(players.map(player => ({ ...player, score: 0 })))
+  }
+
+  function resetAll() {
+    setPlayers([])
   }
 }
 
