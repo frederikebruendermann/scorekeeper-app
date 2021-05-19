@@ -1,7 +1,8 @@
-import Player from './Player'
-import PlayerForm from './PlayerForm'
-import Button from './Button'
+import Player from './components/Player'
+import PlayerForm from './components/PlayerForm'
 import React, { useState } from 'react'
+import './GlobalStyles'
+import styled from 'styled-components/macro'
 
 function App() {
   const [players, setPlayers] = useState([
@@ -10,7 +11,7 @@ function App() {
   ])
 
   return (
-    <div className="App">
+    <PlayerFormWrapper>
       {players.map((player, index) => (
         <Player
           onMinus={() => handleMinus(index)}
@@ -20,11 +21,18 @@ function App() {
           score={player.score}
         />
       ))}
-
-      <Button onClick={resetScores}>Reset scores</Button>
-      <Button onClick={resetAll}>Reset all</Button>
-      <PlayerForm onSubmit={createPlayer} />
-    </div>
+      <section className="functions">
+        <PlayerForm onSubmit={createPlayer} />
+        <section className="buttons">
+          <button isActive onClick={resetScores}>
+            Reset scores
+          </button>
+          <button isActive onClick={resetAll}>
+            Reset all
+          </button>
+        </section>
+      </section>
+    </PlayerFormWrapper>
   )
 
   function createPlayer(name) {
@@ -57,5 +65,20 @@ function App() {
     setPlayers([])
   }
 }
+
+const PlayerFormWrapper = styled.div`
+  .functions {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 10px;
+  }
+`
 
 export default App
