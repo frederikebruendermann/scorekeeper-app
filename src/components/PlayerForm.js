@@ -1,4 +1,3 @@
-import './PlayerForm.css'
 import PropTypes from 'prop-types'
 
 Playerform.propTypes = {

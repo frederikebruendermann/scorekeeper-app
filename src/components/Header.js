@@ -1,10 +1,15 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-export default function Header({ children }) {
-  return <Heading>{children}</Heading>
+Header.propTypes = {
+  children: PropTypes.node,
 }
 
-const Heading = styled.h2`
+export default function Header({ children }) {
+  return <HeaderStyled>{children}</HeaderStyled>
+}
+
+const HeaderStyled = styled.h2`
   font-size: 25px;
   text-align: center;
   color: #413b89;

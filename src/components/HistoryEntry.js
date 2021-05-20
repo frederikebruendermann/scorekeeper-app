@@ -1,35 +1,39 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import Heading from './Header'
 
 HistoryEntry.propTypes = {
-  name: PropTypes.string,
-  score: PropTypes.number,
-  title: PropTypes.string,
+  nameofGame: PropTypes.string,
+  players: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string, score: PropTypes.number })
+  ),
 }
 
-export default function HistoryEntry({ name, score, title }) {
+export default function HistoryEntry({ nameofGame, players }) {
   return (
     <>
-      <div>
-        <Heading>{title}</Heading>
-        <PlayerList>
-          <Name>{name}</Name>
-          <Score>{score}</Score>
-        </PlayerList>
-      </div>
+      <Grid>
+        <Title>{nameofGame}</Title>
+        <ul>
+          {players.map(player => (
+            <Player key={player.name}>
+              <span>{player.name}</span>
+              <span>{player.score}</span>
+            </Player>
+          ))}
+        </ul>
+      </Grid>
     </>
   )
 }
 
-const Name = styled.span`
+const Grid = styled.section`
+  display: grid;
+  gap: 10px;
+`
+const Title = styled.h2`
   font-weight: 500;
 `
-const Score = styled.div`
-  width: 3ch;
-`
-
-const PlayerList = styled.section`
+const Player = styled.li`
   display: flex;
   justify-content: space-between;
 `

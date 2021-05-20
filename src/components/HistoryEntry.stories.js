@@ -8,9 +8,11 @@ export default {
 
 const Template = args => <HistoryEntry {...args} />
 
-export const DefaultHistoryEntry = Template.bind({})
-DefaultHistoryEntry.args = {
-  title: 'Carcassonne',
-  name: 'John Doe',
-  score: '20',
+export const Default = Template.bind({})
+Default.args = {
+  nameOfGame: 'Carcassonne',
+  players: [
+    { name: 'John Doe', score: 40 },
+    { name: 'Jane Doe', score: 30 },
+  ],
 }

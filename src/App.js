@@ -3,7 +3,6 @@ import PlayerForm from './components/PlayerForm'
 import React, { useState } from 'react'
 import './GlobalStyles'
 import styled from 'styled-components/macro'
-import Navigation from './components/Nav'
 
 function App() {
   const [players, setPlayers] = useState([])
