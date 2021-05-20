@@ -3,56 +3,53 @@ import PlayerForm from './components/PlayerForm'
 import React, { useState } from 'react'
 import './GlobalStyles'
 import styled from 'styled-components/macro'
+import Navigation from './components/Nav'
 
 function App() {
-  const [players, setPlayers] = useState([
-    { name: 'John Doe', score: 20 },
-    { name: 'Jane Doe', score: 120 },
-  ])
+  const [players, setPlayers] = useState([])
 
   return (
-    <PlayerFormWrapper>
-      {players.map((player, index) => (
-        <Player
-          onMinus={() => handleMinus(index)}
-          onPlus={() => handlePlus(index)}
-          key={player.name}
-          name={player.name}
-          score={player.score}
-        />
-      ))}
-      <section className="functions">
-        <PlayerForm onSubmit={createPlayer} />
-        <section className="buttons">
-          <button isActive onClick={resetScores}>
-            Reset scores
-          </button>
-          <button isActive onClick={resetAll}>
-            Reset all
-          </button>
+    <div className="App">
+      <PlayerForm onSubmit={createPlayer} />
+
+      <PlayerFormWrapper>
+        <ul className="App__player-List">
+          {players.map((player, index) => (
+            <li>
+              <Player
+                onMinus={() => updateScore(index, -1)}
+                onPlus={() => updateScore(index, 1)}
+                key={player.name}
+                name={player.name}
+                score={player.score}
+              />
+            </li>
+          ))}
+        </ul>
+
+        <section className="App__functions">
+          <section className="buttons">
+            <button isActive onClick={resetScores}>
+              Reset scores
+            </button>
+            <button isActive onClick={resetAll}>
+              Reset all
+            </button>
+          </section>
         </section>
-      </section>
-    </PlayerFormWrapper>
+      </PlayerFormWrapper>
+    </div>
   )
 
   function createPlayer(name) {
     setPlayers([...players, { name, score: 0 }])
   }
 
-  function handleMinus(index) {
+  function updateScore(index, value) {
     const playerToUpdate = players[index]
-    setPlayers([
+    setPlayers(players => [
       ...players.slice(0, index),
-      { ...playerToUpdate, score: playerToUpdate.score - 1 },
-      ...players.slice(index + 1),
-    ])
-  }
-
-  function handlePlus(index) {
-    const playerToUpdate = players[index]
-    setPlayers([
-      ...players.slice(0, index),
-      { ...playerToUpdate, score: playerToUpdate.score + 1 },
+      { ...playerToUpdate, score: playerToUpdate.score + value },
       ...players.slice(index + 1),
     ])
   }

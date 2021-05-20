@@ -14,9 +14,13 @@ export default function Player({ score, name, onMinus, onPlus }) {
     <>
       <PlayerWrapper>
         <div>{name}</div>
-        <Button onClick={onMinus}>-</Button>
+        <Button name="minus" onClick={onMinus}>
+          -
+        </Button>
         <div>{score}</div>
-        <Button onClick={onPlus}>+</Button>
+        <Button name="plus" onClick={onPlus}>
+          +
+        </Button>
       </PlayerWrapper>
     </>
   )
@@ -29,7 +33,7 @@ const PlayerWrapper = styled.section`
   justify-content: center;
   align-items: center;
   gap: 0px 0px;
-  background: #f3e7dd;
+  background-color: #f3e7dd;
   gap: 0px 49px;
 
   div {
