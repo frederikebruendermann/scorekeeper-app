@@ -13,14 +13,14 @@ export default function HistoryEntry({ nameofGame, players }) {
     <>
       <Grid>
         <Title>{nameofGame}</Title>
-        <ul>
+        <PlayerList>
           {players.map(player => (
             <Player key={player.name}>
               <span>{player.name}</span>
               <span>{player.score}</span>
             </Player>
           ))}
-        </ul>
+        </PlayerList>
       </Grid>
     </>
   )
@@ -36,4 +36,9 @@ const Title = styled.h2`
 const Player = styled.li`
   display: flex;
   justify-content: space-between;
+  list-style: none;
+`
+
+const PlayerList = styled.ul`
+  list-style: none;
 `
