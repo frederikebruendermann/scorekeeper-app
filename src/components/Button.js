@@ -17,5 +17,4 @@ const ButtonStyled = styled.button`
   background: ${props => (props.isActive ? '#413b89' : '#de7657')};
   color: aliceblue;
   box-shadow: 2px #d3d1ed;
-  line-height: 15px;
 `

@@ -31,7 +31,7 @@ export default function HistoryPage({ games, onNavigate }) {
         currentPageId="history"
         onNavigate={onNavigate}
         pages={[
-          { title: 'Play', id: 'play' },
+          { title: 'Play', id: 'create' },
           { title: 'History', id: 'history' },
         ]}
       />
@@ -40,9 +40,9 @@ export default function HistoryPage({ games, onNavigate }) {
 }
 
 const Grid = styled.section`
-  display: grid;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
   gap: 20px;
-  height: 100vh;
 `

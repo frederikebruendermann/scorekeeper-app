@@ -9,15 +9,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  layout:'fullscreen'
+  layout:'fullscreen',
 }
 
-
-export const decorators = [
-  (Story) => (
-    <>
-      <GlobalStyles />
-      <Story />
-    </>
-  ),
-];

@@ -13,7 +13,7 @@ export const Default = Template.bind({})
 Default.args = {
   currentPageId: 'play',
   pages: [
-    { title: 'Play', id: 'play' },
+    { title: 'Play', id: 'game' },
     { title: 'History', id: 'history' },
   ],
 }

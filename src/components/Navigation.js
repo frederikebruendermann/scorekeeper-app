@@ -38,4 +38,6 @@ const NavWrapper = styled.nav`
 const NavButton = styled(Button)`
   border-radius: 0;
   width: 100%;
+  padding: 12px;
+  border: none;
 `

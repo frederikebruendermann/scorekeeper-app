@@ -9,32 +9,38 @@ GamePage.propTypes = {
   players: PropTypes.arrayOf(
     PropTypes.shape({ name: PropTypes.string, score: PropTypes.number })
   ),
-  onResetScore: PropTypes.func.isRequired,
+  onResetScores: PropTypes.func.isRequired,
   onEndGame: PropTypes.func.isRequired,
+  onPlayerUpdate: PropTypes.func.isRequired,
 }
 
 export default function GamePage({
   nameOfGame,
   players,
-  onResetScore,
+  onResetScores,
   onEndGame,
+  onPlayerUpdate,
 }) {
   return (
     <Grid>
       <Header>{nameOfGame}</Header>
-      {players.map(player => (
-        <Player name={player.name} score={player.score} />
+      {players.map(({ name, score }, index) => (
+        <Player
+          onMinus={() => onPlayerUpdate(index, -1)}
+          onPlus={() => onPlayerUpdate(index, 1)}
+          key={name}
+          name={name}
+          score={score}
+        />
       ))}
-      <Button onClick={onResetScore}>Reset Scores</Button>
-      <Button onclick={onEndGame}>End Game</Button>
+      <Button onClick={onResetScores}>Reset Scores</Button>
+      <Button onClick={onEndGame}>End game</Button>{' '}
     </Grid>
   )
 }
 
 const Grid = styled.section`
   display: grid;
-  flex-direction: column;
-  justify-content: space-between;
+  align-content: start;
   gap: 20px;
-  height: 100vh;
 `
