@@ -11,6 +11,5 @@ export default function Header({ children }) {
 
 const HeaderStyled = styled.h2`
   font-size: 25px;
-  text-align: center;
   color: #413b89;
 `
